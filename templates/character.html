@@ -1,0 +1,25 @@
+{{ define "character" }}
+<div id="character">
+    <form>
+        <div class="box">
+            <strong class="block titlebar">Identity</strong>
+            {{ template "identity" . }}
+        </div>
+
+        <div class="box">
+            <strong class="block titlebar">Status</strong>
+            {{ template "status" . }}
+        </div>
+
+        <div class="box">
+            <strong class="block titlebar">Traits</strong>
+            {{ template "traits" . }}
+        </div>
+
+        <div class="box">
+            <strong class="block titlebar">Inventory</strong>
+            {{ template "inventory" . }}
+        </div>
+    </form>
+</div>
+{{ end }}

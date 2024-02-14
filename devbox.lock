@@ -1,0 +1,85 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "air@latest": {
+      "last_modified": "2023-12-13T22:54:10Z",
+      "resolved": "github:NixOS/nixpkgs/fd04bea4cbf76f86f244b9e2549fca066db8ddff#air",
+      "source": "devbox-search",
+      "version": "1.49.0",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/nzdwqnar9r4310jdzcz9j5pymhzqp97p-air-1.49.0"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/j62wawhy56qw4cjih4rgb7w2dqf4j24b-air-1.49.0"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/92chvzmj8rmcz09ichh73wkgym916pxm-air-1.49.0"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/jlxkzzswb5dhxxpmhciy869849ryf88i-air-1.49.0"
+        }
+      }
+    },
+    "glow@latest": {
+      "last_modified": "2023-12-13T22:54:10Z",
+      "resolved": "github:NixOS/nixpkgs/fd04bea4cbf76f86f244b9e2549fca066db8ddff#glow",
+      "source": "devbox-search",
+      "version": "1.5.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/mqkifvf232vmh8ghnjakc49rvzgjhgvy-glow-1.5.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/1c1gswvspmjzif7sln68yqnzjb1znpl9-glow-1.5.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/fs84kzaw33606b0s0pwy4kp5fjqkv1z2-glow-1.5.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/lxj6va5k3gcmf4m4ad7hk7mnfks7vigh-glow-1.5.1"
+        }
+      }
+    },
+    "go_1_22@latest": {
+      "last_modified": "2024-02-08T11:55:47Z",
+      "resolved": "github:NixOS/nixpkgs/c0b7a892fb042ede583bdaecbbdc804acb85eabe#go_1_22",
+      "source": "devbox-search",
+      "version": "1.22.0",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/2022s0jnrn2iyxjaikfy51w5fvifp38b-go-1.22.0"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/7wxzkvjv8qc2awhagpz0r8q9ay38q3wj-go-1.22.0"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/fgkl3qk8p5hnd07b0dhzfky3ys5gxjmq-go-1.22.0"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/88y9r33p3j8f7bc8sqiy9jdlk7yqfrlg-go-1.22.0"
+        }
+      }
+    },
+    "gotools@latest": {
+      "last_modified": "2023-12-18T02:58:18Z",
+      "resolved": "github:NixOS/nixpkgs/ca16221251951e9c6261a1a2bb4f9389038d3632#gotools",
+      "source": "devbox-search",
+      "version": "0.16.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/07rj89famgad95mf68cc9dw8fsfd57fv-gotools-0.16.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/hax95w8sp4l4714sn2awz9878mwdzrfa-gotools-0.16.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/4bvlyd401parjb98kalilxf3bvb5bpjy-gotools-0.16.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/s388xvv6zdhf5df236jgm28rb3srx1lb-gotools-0.16.1"
+        }
+      }
+    }
+  }
+}

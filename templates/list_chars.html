@@ -1,0 +1,45 @@
+{{ define "character_list" }}
+<div id="character_list" class="container">
+    <table id="character_table">
+        <caption>
+            Characters
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Armor</th>
+                <th>HP</th>
+                <th>Str</th>
+                <th>Dex</th>
+                <th>Will</th>
+                <th>LeftHand</th>
+                <th>RightHand</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $i, $char := . }}
+            <tr>
+                <td>{{$char.Name}}</td>
+                <td>{{$char.Surname}}</td>
+                <td>{{$char.Inventory.ArmorEquipped}}</td>
+                <td>{{$char.Status.HP}}</td>
+                <td>{{$char.Status.Str}}</td>
+                <td>{{$char.Status.Dex}}</td>
+                <td>{{$char.Status.Will}}</td>
+                <td>{{$char.Inventory.LeftHand.Name}}</td>
+                <td>{{$char.Inventory.RightHand.Name}}</td>
+                <td><button hx-get="{{ printf "/character/%s/%s" $char.Name $char.Surname }}" hx-target="#main">Character Sheet</button></td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+    <button hx-post="/character/generate" hx-target="#main" hx-swap="outerHTML">Generate random new character!</button>
+    <strong>Or</strong>
+    <form hx-post="/character" hx-target="#main">
+        <label>Name<input name="name" placeholder="First Name"></input></label>
+        <label>Surname<input name="surname" placeholder="Last Name"></input></label>
+        <button>Start a new character from a name!</button>
+    </form>
+</div>
+{{ end }}

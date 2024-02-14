@@ -1,0 +1,60 @@
+{{ define "traits" }}
+{{ with $traits := .Traits }}
+<div id="traits" class="f-col crowded" class="f-col crowded" hx-target="this" hx-swap="outerHTML">
+    <div class="f-row">
+        <div>Physique: <strong>{{ .Physique }}</strong></div>
+        <div>Skin: <strong>{{ .Skin }}</strong></div>
+        <div>Hair: <strong>{{ .Hair }}</strong></div>
+        <div>Face: <strong>{{ .Face }}</strong></div>
+    </div>
+    <div class="f-row">
+        <div>Speech: <strong>{{ .Speech }}</strong></div>
+        <div>Clothing: <strong>{{ .Clothing }}</strong></div>
+        <div>Virtue: <strong>{{ .Virtue }}</strong></div>
+        <div>Vice: <strong>{{ .Vice }}</strong></div>
+    </div>
+    <div class="f-row">
+        <div>Reputation: <strong>{{ .Reputation }}</strong></div>
+        <label>Misfortune: <strong>{{ .Misfortune }}</strong>
+    </div>
+    <button hx-get="/character/{{ $.Name }}/{{ $.Surname }}/traits/edit">Edit</button>
+</div>
+{{ end }}
+{{ end }}
+
+{{ define "edit_traits" }}
+{{ with $traits := .Traits }}
+<form id="traits" hx-put="/character/{{ $.Name }}/{{ $.Surname }}/traits" hx-target="this" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <label for="physique">Physique</label>
+            <input id="physique" name="physique" value={{ .Physique }}></input>
+            <label for="skin">Skin</label>
+            <input id="skin" name="skin" value={{ .Skin }}></input>
+            <label for="">Hair</label>
+            <input id="hair" name="hair" value={{ .Hair }}></input>
+            <label for="">Face</label>
+            <input id="face" name="face" value={{ .Face }}></input>
+        </div>
+        <div class="f-row">
+            <label for="">Speech</label>
+            <input id="speech" name="speech" value={{ .Speech }}></input>
+            <label for="">Clothing</label>
+            <input id="clothing" name="clothing" value={{ .Clothing }}></input>
+            <label for="">Virtue</label>
+            <input id="virtue" name="virtue" value={{ .Virtue }}></input>
+            <label for="">Vice</label>
+            <input id="vice" name="vice" value={{ .Vice }}></input>
+        </div>
+        <div class="f-row">
+            <label for="">Reputation</label>
+            <input id="reputation" name="reputation" value={{ .Reputation }}></input>
+            <label>Misfortune</label>
+            <input id="misfortune" name="misfortune" value={{ .Misfortune }}></input>
+        </div>
+        <button>Submit</button>
+        <button hx-get="/character/{{ $.Name }}/{{ $.Surname }}/traits">Cancel</button>
+    </div>
+</form>
+{{ end }}
+{{ end }}

@@ -1,0 +1,117 @@
+{{ define "inventory" }}
+{{ with $inv := .Inventory.IntoView }}
+<div id="inventory">
+    <div class="grid" id="inventory_body">
+        <div data-cols="2" data-rows="1"><label>Head</label> {{ $inv.Head.Name }} {{ $inv.Head.Type }} </div>
+        <div data-cols="2" data-rows="3"><label>Torso</label> {{ $inv.Torso.Name }} {{ $inv.Torso.Type }}</div>
+        <div data-cols="1" data-rows="2"><label>Left Hand</label> {{ $inv.LeftHand.Name }} {{ $inv.LeftHand.Type }}
+        </div>
+        <div data-cols="3" data-rows="2"><label>Right Hand</label> {{ $inv.RightHand.Name }} {{ $inv.RightHand.Type }}
+        </div>
+    </div>
+    <br></br>
+    <div class="f-row">
+        <p><label>Armor</label>: {{ $inv.Armor }}</p>
+        <p><label>Backpack</label>: {{ $inv.BackpackUsed }} / 6 </p>
+    </div>
+
+    {{ template "backpack" $ }}
+
+    {{ if gt (len .Ground) 0 }}
+    <table id="inventory_ground">
+        <caption>
+            On the Ground Nearby...
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody hx-confirm="Are you sure?" hx-target="#inventory">
+            {{ range $i, $item := .Ground }}
+            <tr>
+                <td>{{$item.Name}}</td>
+                <td>{{$item.Type}}</td>
+                <td>{{$item.Size}}</td>
+                <td>
+                    {{ if $item.Description.IsSome }}
+                    {{ with $d := $item.Description.Get }}
+                    {{ printf $d}}
+                    {{ end }}
+                    {{ else }}
+                    {{ end }}
+                </td>
+                <td><button hx-delete="/character/{{$.Name}}/{{$.Surname}}/inventory/ground/{{$i}}">Delete</button></td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}
+
+{{ define "backpack" }}
+{{ with $inv := .Inventory.IntoView }}
+<div id="inventory_backpack" hx-target="this">
+    <table>
+        <caption>
+            Backpack
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody hx-confirm="Are you sure?" hx-target="#inventory">
+            {{ range $i, $item := $inv.Backpack }}
+            <tr>
+                <td>{{$item.Name}}</td>
+                <td>{{$item.Type}}</td>
+                <td>{{$item.Size}}</td>
+                <td>
+                    {{ if $item.Description.IsSome }}
+                    {{ with $d := $item.Description.Get }}
+                    {{ printf $d}}
+                    {{ end }}
+                    {{ else }}
+                    {{ end }}
+                </td>
+                <td><button hx-delete="/character/{{$.Name}}/{{$.Surname}}/inventory/backpack/{{$i}}">Drop</button>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+    <button hx-get="/character/{{ $.Name }}/{{ $.Surname }}/inventory/backpack/edit">Edit</button>
+</div>
+{{ end }}
+{{ end }}
+
+{{ define "edit_backpack" }}
+<form id="inventory_backpack" hx-target="#inventory">
+    <div class="table">
+        <caption>
+            Edit Backpack
+        </caption>
+        <datalist id="item_types">
+            {{ range $j, $item_type := .ItemTypeList }}
+            <option value="{{ $item_type }}"></option>
+            {{ end }}
+        </datalist>
+        {{ range $i, $item := .Backpack }}
+        <div class="row">
+            <label>Name <input name="item_name" value={{$item.Name}}></input></label>
+            <label>Type <input list="item_types" name="item_type" value={{$item.Type}}></input></label>
+            <button hx-put="/character/{{$.Name}}/{{$.Surname}}/inventory/backpack/{{$i}}">Update</button>
+        </div>
+        {{ end }}
+        <button hx-get="/character/{{ $.Name }}/{{ $.Surname }}/inventory">Cancel</button>
+    </div>
+</form>
+{{ end }}

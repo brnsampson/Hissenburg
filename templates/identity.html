@@ -1,0 +1,32 @@
+{{ define "identity" }}
+<div class="f-col crowded" hx-target="this" hx-swap="outerHTML">
+    <div class="f-row">
+        <div><label>Name</label>: <strong>{{ .Name }}</strong></div>
+        <div><label>Surname</label>: <strong>{{ .Surname }}</strong></div>
+    </div>
+    <div class="f-row">
+        <div><label>Gender</label>: <strong>{{ .Gender }}</strong></div>
+        <div><label>Background</label>: <strong>{{ .Background }}</strong></div>
+        <div><label>Age</label>: <strong>{{ .Age }}</strong></div>
+    </div>
+    <button hx-get="/character/{{ .Name }}/{{ .Surname }}/identity/edit">Edit</button>
+</div>
+{{ end }}
+
+{{ define "edit_identity" }}
+<form hx-put="/character/{{ .Name }}/{{ .Surname }}/identity" hx-target="this" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <label>Name <input id="name" name="name" value={{ .Name }}></input></label>
+            <label>Surname <input id="surname" name="surname" value={{ .Surname }}></input></label>
+        </div>
+        <div class="f-row">
+            <label>Gender <input id="gender" name="gender" value={{ .Gender }}></input></label>
+            <label>Background <input id="background" name="background" value={{ .Background }}></input></label>
+            <label>Age <input id="age" name="age" value={{ .Age }}></input></label>
+        </div>
+        <button>Submit</button>
+        <button hx-get="/character/{{ .Name }}/{{ .Surname }}/identity">Cancel</button>
+    </div>
+</form>
+{{ end }}

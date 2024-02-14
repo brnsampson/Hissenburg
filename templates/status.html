@@ -1,0 +1,85 @@
+{{ define "status" }}
+{{ with $status := .Status }}
+<div id="status" class="f-row crowded">
+    <form hx-put="/character/{{ $.Name }}/{{ $.Surname }}/status" hx-target="#status" hx-swap="outerHTML">
+        <div class="f-col crowded">
+            <div class="f-row">
+                <label for="hp">HP</label>
+                <input id="hp" name="hp" value={{ $status.HP }}></input>
+                /
+                <label>MaxHP<div>: <strong>{{ $status.MaxHP }}</strong></div></label>
+                <input type="hidden" name="maxhp" value={{ $status.MaxHP }}></input>
+            </div>
+            <div class="f-row">
+                <label for="str">Str</label>
+                <input id="str" name="str" value={{ $status.Str }}></input>
+                /
+                <label>MaxStr<div>: <strong>{{ $status.MaxStr }}</strong></div></label>
+                <input type="hidden" name="maxstr" value={{ $status.MaxStr }}></input>
+            </div>
+        </div>
+        <div class="f-col crowded">
+            <div class="f-row crowded">
+                <label for="dex">Dex</label>
+                <input id="dex" name="dex" value={{ $status.Dex }}></input>
+                /
+                <label>MaxDex<div>: <strong>{{ $status.MaxDex }}</strong></div></label>
+                <input type="hidden" name="maxdex" value={{ $status.MaxDex }}></input>
+            </div>
+            <div class="f-row crowded">
+                <label for="will">Will</label>
+                <input id="will" name="will" value={{ $status.Will }}></input>
+                /
+                <label>MaxWill<div>: <strong>{{ $status.MaxWill }}</strong></div></label>
+                <input type="hidden" name="maxwill" value={{ $status.MaxWill }}></input>
+            </div>
+        </div>
+        <input type="submit" style="display: none"></input>
+    </form>
+    <button hx-get="/character/{{ $.Name }}/{{ $.Surname }}/status/edit" hx-target="#status">Edit</button>
+</div>
+{{ end }}
+{{ end }}
+
+{{ define "edit_status" }}
+{{ with $status := .Status }}
+<form id="status" hx-put="/character/{{ $.Name }}/{{ $.Surname }}/status" hx-target="this" hx-swap="outerHTML">
+    <div class="f-row crowded">
+        <div class="f-col crowded">
+            <fieldset class="f-row">
+                <label for="hp">HP</label>
+                <input id="hp" name="hp" value={{ $status.HP }}></input>
+                /
+                <label for="maxhp">MaxHP</label>
+                <input id="maxhp" name="maxhp" value={{ $status.MaxHP }}></input>
+            </fieldset>
+            <fieldset class="f-row">
+                <label for="str">Str</label>
+                <input id="str" name="str" value={{ $status.Str }}></input>
+                /
+                <label for="maxstr">MaxStr</label>
+                <input id="maxstr" name="maxstr" value={{ $status.MaxStr }}></input>
+            </fieldset>
+        </div>
+        <div class="f-col crowded">
+            <fieldset class="f-row crowded">
+                <label for="dex">Dex</label>
+                <input id="dex" name="dex" value={{ $status.Dex }}></input>
+                /
+                <label for="maxdex">MaxDex</label>
+                <input id="maxdex" name="maxdex" value={{ $status.MaxDex }}></input>
+            </fieldset>
+            <fieldset class="f-row crowded">
+                <label for="will">Will</label>
+                <input id="will" name="will" value={{ $status.Will }}></input>
+                /
+                <label for="maxwill">MaxWill</label>
+                <input id="maxwill" name="maxwill" value={{ $status.MaxWill }}></input>
+            </fieldset>
+        </div>
+        <button>Submit</button>
+        <button hx-get="/character/{{ $.Name }}/{{ $.Surname }}/status">Cancel</button>
+    </div>
+</form>
+{{ end }}
+{{ end }}
