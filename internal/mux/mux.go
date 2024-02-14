@@ -198,7 +198,7 @@ func (ch *CharHandler) putIdentity(w http.ResponseWriter, r *http.Request) {
 	}
 	age := uint16(age64)
 
-	char, err := ch.backend.GetCharacter(name, surname)
+	char, err := ch.backend.GetCharacter(oldName, oldSurname)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
