@@ -1,0 +1,73 @@
+{{ define "inventory" }}
+<div id="inventory">
+    {{ template "equipment" .Equipment }}
+    {{ template "backpack" .Backpack }}
+    {{ template "bonus" .BonusSpace }}
+    {{ template "ground" .Ground }}
+</div>
+{{ end }}
+
+{{ define "inventory_edit" }}
+<form id="inventory" hx-put="/inventory/{{ .Inventory.ID }}" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <input name="name" value={{ .Inventory.Name }}></input>
+            <input name="surname" value={{ .Inventory.Surname }}></input>
+        </div>
+        <div class="f-row">
+            <input name="gender" value={{ .Inventory.Gender }}></input>
+            <input name="age" value={{ .Inventory.Age }}></input>
+        </div>
+        <div class="f-row">
+            <input name="portrait" value={{ or .Inventory.Portrait "" }}></input>
+            <input name="background" value={{ .Inventory.Background.Title }}></input>
+        </div>
+    </div>
+    <button>Update!</button>
+</form>
+<button hx-get="/inventory/{{ .Inventory.ID }}" hx-target="#inventory" hx-swap="outerHTML">Edit</button>
+{{ end }}
+
+{{ define "equipment" }}
+<div id="equipment" class="grid">
+    <div data-cols="3" data-rows="1">
+        {{ if .Head }}
+        Head:
+        <div hx-get="/item/{{.Head}}" hx-trigger="load"></div>
+        {{ else }}
+        Head: Empty
+        {{ end }}
+    </div>
+    <div data-cols="3" data-rows="3">
+        {{ if .Torso }}
+        Torso:
+        <div hx-get="/item/{{.Torso}}" hx-trigger="load"></div>
+        {{ else }}
+        Torso: Empty
+        {{ end }}
+    </div>
+    <div data-cols="1" data-rows="3">
+        {{ if .LeftHand }}
+        LeftHand:
+        <div hx-get="/item/{{.LeftHand}}" hx-trigger="load"></div>
+        {{ else }}
+        LeftHand: Empty
+        {{ end }}
+    </div>
+    <div data-cols="5" data-rows="3">
+        {{ if .RightHand }}
+        RightHand:
+        <div hx-get="/item/{{.RightHand}}" hx-trigger="load"></div>
+        {{ else }}
+        RightHand: Empty
+        {{ end }}
+    </div>
+    <button hx-get="/inventory/{{ .ID }}/equipment/edit" hx-target="#inventory" hx-swap="outerHTML">Edit</button>
+</div>
+{{ end }}
+
+{{ define "equipment_edit" }}
+<div id="equipment" class="grid">
+    <button hx-get="/inventory/{{ .ID }}/equipment" hx-target="#inventory" hx-swap="outerHTML">Edit</button>
+</div>
+{{ end }}

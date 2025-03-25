@@ -1,20 +1,5 @@
 {{ block "index" . }}
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Welcome to Hissenburg!</title>
-    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1" />
-    <script
-      src="https://unpkg.com/htmx.org@1.9.2"
-      integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-
-  <body>
-    <div id="main" class="main">
-      <div hx-get="/character" hx-trigger="load" hx-swap="outerHTML"></div>
-    </div>
-  </body>
-</html>
+<div id="main" class="main">
+    Welcome to Hissenburg!
+</div>
 {{ end }}

@@ -1,0 +1,71 @@
+{{ define "item_view" }}
+<div id="item">
+    <table id="item_view" class="width:100%">
+        <tr>
+            <td>Name: {{.Name}}</td>
+            <td>Value: {{.Value}}</td>
+            <td>Kind: {{.Kind}}</td>
+            <td>Active Slot: {{.Slot}}</td>
+            <td>Stacks: {{.Stackable}}</td>
+        <tr>
+        <tr>
+            {{ if eq .Kind "Weapon" }}<p>Attack: {{.DiceCount}}d{{.DiceSides}}</p>{{ end }}
+            <td>Armor: {{.Armor}}</td>
+            <td>Extra Storage: {{.Storage}}</td>
+            <td>Size: {{.ActiveSize}}</td>
+        </tr>
+        <tr>
+            <td>Size when stowed: {{.Size}}</td>
+        </tr>
+    </table>
+    <button hx-get="/item/{{ .Kind }}/{{ .Name }}/edit" hx-target="#item">Edit</button>
+</div>
+{{ end }}
+
+{{ define "item_edit" }}
+<div id="item">
+    <form id="item_edit" hx-put="/item/{{ .Item.Kind }}/{{ .Item.Name }}" hx-target="#item">
+        <div id="item_metadata">
+            <div>
+                <label>Name<input name="name" value={{.Item.Name}}></input></label>
+                <label>Value<input name="value" value={{.Item.Value}}></input></label>
+                <label>Kind<select name="kind">
+                        {{ range $i, $kind := .Kinds }}
+                        {{ if eq $kind.Name $.Item.Kind}}
+                        <option selected value="{{$kind.Name}}">{{$kind.Name}}</option>
+                        {{ else }}
+                        <option value="{{$kind.Name}}">{{$kind.Name}}</option>
+                        {{ end }}
+                        {{ end }}
+                    </select></label>
+                <label>Active Slot<select name="slot">
+                        {{ range $i, $slot := .Slots }}
+                        {{ if eq $slot.Name $.Item.Slot}}
+                        <option selected value="{{$slot.Name}}">{{$slot.Name}}</option>
+                        {{ else }}
+                        <option value="{{$slot.Name}}">{{$slot.Name}}</option>
+                        {{ end }}
+                        {{ end }}
+                    </select></label>
+                <label>Stacks<input name="stackable" value={{.Item.Stackable}}></input></label>
+            </div>
+        </div>
+        <div id="item_equipped_stats">
+            <div>
+                <label>Attack Dice Count<input name="dice_count" value={{.Item.DiceCount}}></input></label>
+                <label>Attack Dice Sides<input name="dice_sides" value={{.Item.DiceSides}}></input></label>
+                <label>Armor<input name="armor" value={{.Item.Armor}}></input></label>
+                <label>Extra Storage<input name="storage" value={{.Item.Storage}}></input></label>
+                <label>Size<input name="active_size" value={{.Item.ActiveSize}}></input></label>
+            </div>
+        </div>
+        <div id="item_stored_stats">
+            <div>
+                <label>Size when stowed<input name="size" value={{.Item.Size}}></input></label>
+            </div>
+        </div>
+        <button>Submit</button>
+        <button hx-get="/item/{{ .Item.Kind }}/{{ .Item.Name }}" hx-target="#item">Cancel</button>
+    </form>
+</div>
+{{ end }}

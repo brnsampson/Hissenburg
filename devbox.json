@@ -3,7 +3,11 @@
     "go_1_22@latest",
     "air@latest",
     "glow@latest",
-    "gotools@latest"
+    "gotools@latest",
+    "sqlite@latest",
+    "sqlite-utils@latest",
+    "sqlc@latest",
+    "go-migrate@latest"
   ],
   "shell": {
     "init_hook": [

@@ -244,19 +244,19 @@ func newSpellBook(book SpellBook, description string, icon o.Option[string]) ite
 		Storage: 0,
 		Size: 1,
 		ActiveSize: 2,
-		ActiveSlot: item.HandSlot,
+		ActiveSlot: item.Hand,
 		Stackable: false,
 		Icon: icon,
 	}
 }
 
 var SpellBookList map[SpellBook]item.Item = map[SpellBook]item.Item{
-	Adhere: newSpellBook(Adhere, "An object is covered in extremely sticky slime", o.None[string]()),
-	Anchor: newSpellBook(Anchor, "A strong wire sprouts from your arms, affixing itself to two points within 50ft on each side", o.None[string]()),
-	AnimateObject: newSpellBook(AnimateObject, "An object obeys your commands as best it can", o.None[string]()),
-	Anthropomorphize: newSpellBook(Anthropomorphize, "", o.None[string]()),
-	ArcaneEye: newSpellBook(ArcaneEye, "", o.None[string]()),
-	AstralPrison: newSpellBook(AstralPrison, "", o.None[string]()),
+	Adhere: newSpellBook(Adhere, "An object is covered in extremely sticky slime.", o.None[string]()),
+	Anchor: newSpellBook(Anchor, "A strong wire sprouts from your arms, affixing itself to two points within 50ft on each side.", o.None[string]()),
+	AnimateObject: newSpellBook(AnimateObject, "An object obeys your commands as best it can.", o.None[string]()),
+	Anthropomorphize: newSpellBook(Anthropomorphize, "An animal either gains human intelligence or human appearance for one day.", o.None[string]()),
+	ArcaneEye: newSpellBook(ArcaneEye, "You can see through a magical floating eyeball that flies around at your command.", o.None[string]()),
+	AstralPrison: newSpellBook(AstralPrison, "An object is frozen in time and space within an invulnerable crystal shell.", o.None[string]()),
 	Attract: newSpellBook(Attract, "", o.None[string]()),
 	AuditoryIllusion: newSpellBook(AuditoryIllusion, "", o.None[string]()),
 	Babble: newSpellBook(Babble, "", o.None[string]()),

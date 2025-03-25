@@ -1,0 +1,42 @@
+{{ define "party_browser" }}
+<div id="party_browser" class="container">
+    <button hx-get="/party/new" hx-target="#main">Create a new party!</button>
+    <br></br>
+    {{ template "party_list" . }}
+</div>
+{{ end }}
+
+{{ define "party_list" }}
+<div id="party_list" class="container">
+    <table id="party_table">
+        <caption>
+            Partys
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $i, $party := . }}
+            <tr>
+                <td>{{$party.Name}}</td>
+                <td><button hx-get="/party/{{ $party.Name }}" hx-target="#main">Go to here</button></td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</div>
+{{ end }}
+
+{{ define "party_new" }}
+<form id="new_party_form" hx-post="/party" hx-boost="true">
+    <label>Party Name<input name="name"></input></label>
+    <label>Description<input name="description"></input></label>
+    <button>Make it!</button>
+</form>
+{{ end }}
+
+{{ define "party_view" }}
+Welcome to {{ .Name }}!
+{{ end }}

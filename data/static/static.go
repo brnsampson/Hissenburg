@@ -41,10 +41,10 @@ func list[T countableListable](filter string) []T {
 	c := t.Count()
 
 	tmp := make([]T, 0)
-	for i := 1; i <= c; i ++ {
+	for i := 0; i < c; i ++ {
 		tmpstr := T(i).String()
 		if strings.HasPrefix(tmpstr, filter) {
-			tmp[i] = T(i)
+			tmp = append(tmp, T(i))
 		}
 	}
 	return tmp
@@ -55,10 +55,10 @@ func listString[T countableListable](filter string) []string {
 	c := t.Count()
 
 	tmp := make([]string, 0)
-	for i := 1; i <= c; i ++ {
+	for i := 0; i < c; i ++ {
 		tmpstr := T(i).String()
 		if strings.HasPrefix(tmpstr, filter) {
-			tmp[i] = tmpstr
+			tmp = append(tmp, tmpstr)
 		}
 	}
 	return tmp
@@ -68,9 +68,9 @@ func (sb StaticBackend) ListGender(filter string) []character.Gender {
 	var g character.Gender
 	c := g.Count()
 	genders := make([]character.Gender, 0)
-	for i := 1; i <= c; i ++ {
+	for i := 0; i < c; i ++ {
 		if strings.HasPrefix(character.Gender(i).String(), filter) {
-			genders[i] = character.Gender(i)
+			genders = append(genders, character.Gender(i))
 
 		}
 	}
@@ -88,26 +88,28 @@ func (sb StaticBackend) PickGender() character.Gender {
 func (sb StaticBackend) ListName(gender character.Gender, filter string) []string {
 	names := make([]string, 0)
 
-	if gender != character.Female {
+	if gender == character.Male {
 		var n name.MaleName
 		maleCount := n.Count()
-		for i := 0; i <= maleCount; i++ {
+		for i := 0; i < maleCount; i++ {
 			names = append(names, name.MaleName(i).String())
 		}
 	}
 
-	if gender != character.Male {
+	if gender == character.Female {
 		var n name.FemaleName
 		femaleCount := n.Count()
-		for i := 0; i <= femaleCount; i++ {
+		for i := 0; i < femaleCount; i++ {
 			names = append(names, name.FemaleName(i).String())
 		}
 	}
 
-	var n name.AsexName
-	asexCount := n.Count()
-	for i := 0; i <= asexCount; i++ {
-		names = append(names, name.AsexName(i).String())
+	if gender == character.GenderUndefined {
+		var n name.AsexName
+		asexCount := n.Count()
+		for i := 0; i < asexCount; i++ {
+			names = append(names, name.AsexName(i).String())
+		}
 	}
 
 	filtered := make([]string, 0)

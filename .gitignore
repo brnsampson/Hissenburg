@@ -8,6 +8,7 @@
 *.so
 *.dylib
 Hissenburg
+serve
 
 # Test binary, built with `go test -c`
 *.test
@@ -23,3 +24,9 @@ go.work
 
 # temporary files from live development with air
 tmp
+
+# a place that character json files end up in in the early days
+store
+
+# directory to put sqlite db files while developing
+db

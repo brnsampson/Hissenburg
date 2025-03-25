@@ -6,6 +6,7 @@ import (
 	"os"
 	"github.com/brnsampson/Hissenburg/internal/config"
 	"github.com/brnsampson/Hissenburg/internal/mux"
+	"github.com/brnsampson/Hissenburg/logic/startup"
 	"github.com/brnsampson/httprunner"
 	co "github.com/brnsampson/optional/confopt"
 	"github.com/charmbracelet/log"
@@ -144,6 +145,12 @@ func main() {
 
 	// We have a static config! Easy, right?!?! ...right?
 	log.Info("Full configuration loaded", "config", fmt.Sprintf("%#v", appConfig))
+
+	err = startup.PopulateMissingItems([]string{})
+	if err != nil {
+		log.Error("Error while populating missing items in DB", "error", err)
+		panic("Error runnin PopulateMissingItems!")
+	}
 
 	mux, err := mux.New(fsConfig.Path)
 	if err != nil {

@@ -1,0 +1,225 @@
+{{ define "character_sheet" }}
+<div id="character">
+    <div>
+        <div class="box">
+            <strong class="block titlebar">Character</strong>
+            {{ template "associations" . }}
+        </div>
+        <div class="box">
+            <strong class="block titlebar">Identity</strong>
+            {{ template "identity" . }}
+        </div>
+
+        <div class="box">
+            <strong class="block titlebar">Status</strong>
+            {{ template "status" . }}
+        </div>
+
+        <div class="box">
+            <strong class="block titlebar">Traits</strong>
+            {{ template "traits" . }}
+        </div>
+
+        <div class="box">
+            <strong class="block titlebar">Inventory</strong>
+            <div hx-get="/inventory/{{.Inventory}}" hx-trigger="load"></div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+{{ define "character_view" }}
+<div id="traits" class="f-col crowded" hx-target="this" hx-swap="outerHTML">
+    <div class="f-row">
+        <div>User: <strong>{{ .User.Name }}</strong></div>
+        <div>Village: <strong>{{ .Village.Village }}</strong></div>
+        <div>Party: <strong>{{ .Party }}</strong></div>
+    </div>
+</div>
+{{ end }}
+
+{{ define "character_creation" }}
+<div id="character">
+    <form>
+        <label>Name<input name="name"></input></label>
+        <label>Surame<input name="surname"></input></label>
+        <label>User<input name="user"></input></label>
+        <label>Village<input village="village"></input></label>
+        <label>Party<input party="party"></input></label>
+    </form>
+</div>
+{{ end }}
+
+{{ define "associations" }}
+<div id="associations">
+    <table id="item_view" class="width:100%">
+        <tr>
+            <td>User: {{.Associations.User.Name}}</td>
+        </tr>
+        <tr>
+            <td>Village: {{.Associations.Village.Name}}</td>
+        </tr>
+        <tr>
+            <td>Party: {{.Associations.Party.Name}}</td>
+        </tr>
+    </table>
+    <button hx-get="/character/{{ .Identity.Name }}/{{ .Identity.Surname }}/associations/edit" hx-target="#associations" hx-swap="outerHTML">Edit</button>
+</div>
+{{ end }}
+
+{{ define "associations_edit" }}
+<form id="associations" hx-put="/character/{{ .Name }}/{{ .Surname }}/associations" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <input name="user" value={{ .Associations.User.Name }}></input>
+        </div>
+        <div class="f-row">
+            <input name="village" value={{ .Associations.Village.Name }}></input>
+        </div>
+        <div class="f-row">
+            <input name="party" value={{ .Associations.Party.Name }}></input>
+        </div>
+    </div>
+    <button>Update!</button>
+</form>
+<button hx-get="/character/{{ .Name }}/{{ .Surname }}/associations" hx-swap="outerHTML">Cancel</button>
+{{ end }}
+
+{{ define "identity" }}
+<div id="identity">
+    <table id="item_view" class="width:100%">
+        <tr>
+            <td>Name: {{.Identity.Name}}</td>
+            <td>Surname: {{.Identity.Surname}}</td>
+        </tr>
+        <tr>
+            <td>Gender: {{.Identity.Gender}}</td>
+            <td>Age: {{.Identity.Age}}</td>
+        </tr>
+        <tr>
+            <td>Portrait: {{.Identity.Portrait}}</td>
+            <td>Background: {{.Identity.Background.Title}}</td>
+        </tr>
+    </table>
+    <button hx-get="/character/{{ .Identity.Name }}/{{ .Identity.Surname }}/identity/edit" hx-target="#identity" hx-swap="outerHTML">Edit</button>
+</div>
+{{ end }}
+
+{{ define "identity_edit" }}
+<form id="identity" hx-put="/character/{{ .Identity.Name }}/{{ .Identity.Surname }}/identity" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <input name="name" value={{ .Identity.Name }}></input>
+            <input name="surname" value={{ .Identity.Surname }}></input>
+        </div>
+        <div class="f-row">
+            <input name="gender" value={{ .Identity.Gender }}></input>
+            <input name="age" value={{ .Identity.Age }}></input>
+        </div>
+        <div class="f-row">
+            <input name="portrait" value={{ or .Identity.Portrait "" }}></input>
+            <input name="background" value={{ .Identity.Background.Title }}></input>
+        </div>
+    </div>
+    <button>Update!</button>
+</form>
+<button hx-get="/character/{{ .Identity.Name }}/{{ .Identity.Surname }}/identity" hx-swap="outerHTML">Cancel</button>
+{{ end }}
+
+{{ define "traits" }}
+<div id="traits">
+    <table id="item_view" class="width:100%">
+        <tr>
+            <td>Physique: {{.Traits.Physique}}</td>
+            <td>Skin: {{.Traits.Skin}}</td>
+            <td>Hair: {{.Traits.Hair}}</td>
+            <td>Face: {{.Traits.Face}}</td>
+        </tr>
+        <tr>
+            <td>Speech: {{.Traits.Speech}}</td>
+            <td>Clothing: {{.Traits.Clothing}}</td>
+            <td>Virtue: {{.Traits.Virtue}}</td>
+            <td>Vice: {{.Traits.Vice}}</td>
+        </tr>
+        <tr>
+            <td>Reputation: {{.Traits.Reputation}}</td>
+            <td>Misfortune: {{.Traits.Misfortune}}</td>
+        </tr>
+    </table>
+    <button hx-get="/character/{{ .Identity.Name }}/{{ .Identity.Surname }}/traits/edit" hx-target="#traits" hx-swap="outerHTML">Edit</button>
+</div>
+{{ end }}
+
+{{ define "traits_edit" }}
+<form id="traits" hx-put="/character/{{ .Name }}/{{ .Surname }}/traits" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <input name="physique" value={{ .Traits.Physique }}></input>
+            <input name="Skin" value={{ .Traits.Skin }}></input>
+            <input name="hair" value={{ .Traits.Hair }}></input>
+            <input name="face" value={{ .Traits.Face }}></input>
+        </div>
+        <div class="f-row">
+            <input name="speech" value={{ .Traits.Speech }}></input>
+            <input name="clothing" value={{ .Traits.Clothing }}></input>
+            <input name="virtue" value={{ .Traits.Virtue }}></input>
+            <input name="vice" value={{ .Traits.Vice }}></input>
+        </div>
+        <div class="f-row">
+            <input name="reputation" value={{ .Traits.Reputation }}></input>
+            <input name="misfortune" value={{ .Traits.Misfortune }}></input>
+        </div>
+    </div>
+    <button>Update!</button>
+</form>
+<button hx-get="/character/{{ .Name }}/{{ .Surname }}/traits" hx-swap="outerHTML">Cancel</button>
+{{ end }}
+
+{{ define "status" }}
+<div id="status">
+    <table id="item_view" class="width:100%">
+        <tr>
+            <td>Hp: {{.Status.Hp}}</td>
+            <td>MaxHp: {{.Status.MaxHp}}</td>
+        </tr>
+        <tr>
+            <td>Str: {{.Status.Str}}</td>
+            <td>MaxStr: {{.Status.MaxStr}}</td>
+        </tr>
+        <tr>
+            <td>Dex: {{.Status.Dex}}</td>
+            <td>MaxDex: {{.Status.MaxDex}}</td>
+        </tr>
+        <tr>
+            <td>Will: {{.Status.Will}}</td>
+            <td>MaxWill: {{.Status.MaxWill}}</td>
+        </tr>
+    </table>
+    <button hx-get="/character/{{ .Identity.Name }}/{{ .Identity.Surname }}/status/edit" hx-target="#status" hx-swap="outerHTML">Edit</button>
+</div>
+{{ end }}
+
+{{ define "status_edit" }}
+<form id="status" hx-put="/character/{{ .Name }}/{{ .Surname }}/status" hx-swap="outerHTML">
+    <div class="f-col crowded">
+        <div class="f-row">
+            <input name="hp" value={{ .Status.Hp }}></input>
+            <input name="maxHp" value={{ .Status.maxHp }}></input>
+        </div>
+        <div class="f-row">
+            <input name="str" value={{ .Status.Str }}></input>
+            <input name="maxStr" value={{ .Status.maxStr }}></input>
+        </div>
+        <div class="f-row">
+            <input name="dex" value={{ .Status.Dex }}></input>
+            <input name="maxDex" value={{ .Status.maxDex }}></input>
+        </div>
+        <div class="f-row">
+            <input name="will" value={{ .Status.Will }}></input>
+            <input name="maxWill" value={{ .Status.maxWill }}></input>
+        </div>
+    </div>
+    <button>Update!</button>
+</form>
+<button hx-get="/character/{{ .Name }}/{{ .Surname }}/status" hx-swap="outerHTML">Cancel</button>
+{{ end }}

@@ -1,66 +1,88 @@
 package character
 
 import (
-	"strings"
-	"github.com/brnsampson/Hissenburg/models/status"
-	"github.com/brnsampson/Hissenburg/models/inventory"
+	"github.com/brnsampson/Hissenburg/gen/sqlc"
 )
 
-//go:generate stringer -type=Gender
-type Gender int
-
-func (g Gender) Count() int {
-	return 6
+type CharacterListView struct {
+	Characters []Character
 }
 
-const (
-	GenderUndefined Gender = iota
-	Intersex
-	Indeterminate
-	Fluid
-	Female
-	Male
-)
+type Associations struct {
+	CharacterID int64
+	User        sqlc.User
+	Party       sqlc.Party
+	Village     sqlc.Village
+}
 
-func GenderFromString(g string) Gender {
-	g = strings.ToLower(g)
-	if g == "genderundefined" {
-		return GenderUndefined
-	} else if g == "indeterminate" {
-		return Indeterminate
-	} else if g == "fluid" {
-		return Fluid
-	} else if g == "female" {
-		return Female
-	} else if g == "male" {
-		return Male
-	} else {
-		return GenderUndefined
-	}
+type AssociationsEdit struct {
+	Name string
+	Surname string
+	Associations Associations
+}
+
+type Status struct {
+	CharacterID int64
+	Hp          int64
+	MaxHp       int64
+	Str         int64
+	MaxStr      int64
+	Dex         int64
+	MaxDex      int64
+	Will        int64
+	MaxWill     int64
+}
+
+type StatusEdit struct {
+	Name string
+	Surname string
+	Status Status
+}
+
+type Traits struct {
+	CharacterID int64
+	Physique    string
+	Skin        string
+	Hair        string
+	Face        string
+	Speech      string
+	Clothing    string
+	Virtue      string
+	Vice        string
+	Reputation  string
+	Misfortune  string
+}
+
+type TraitsEdit struct {
+	Name string
+	Surname string
+	Traits Traits
+}
+
+type Identity struct {
+	CharacterID int64
+	Gender      string
+	Name        string
+	Surname     string
+	Age         int64
+	Portrait    string
+	Background  sqlc.Background
+}
+
+type IdentityEdit struct {
+	Identity Identity
 }
 
 type Character struct {
-	Name string
-	Surname string
-	Gender Gender
-	Background string
-	Age uint16
-	Traits Traits
-	Status status.Status
-	Description string
-	Inventory inventory.Inventory
+	ID           int64
+	Description  string
+	Associations Associations
+	Identity     Identity
+	Traits       Traits
+	Status       Status
+	Inventory    int64
 }
 
 func New() Character {
-	return Character{
-		Name: "",
-		Surname: "",
-		Gender: GenderUndefined,
-		Background: "",
-		Age: 0,
-		Traits: NewTraits(),
-		Status: status.New(),
-		Description: "",
-		Inventory: inventory.New(),
-	}
+	return Character{}
 }

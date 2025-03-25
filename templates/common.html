@@ -1,0 +1,59 @@
+{{ block "page" . }}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Welcome to Hissenburg!</title>
+    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1" />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.2"
+      integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <nav aria-label="Characters">
+        <ul role="list">
+          <li>
+            <a href="/"><img alt="missing.js" src="/logo.png" /></a>
+          </li>
+          <li><a href="/character">Character List</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Items">
+        <ul role="list">
+          <li>
+            <a href="/"><img alt="" /></a>
+          </li>
+          <li><a href="/item">Item List</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Villages">
+        <ul role="list">
+          <li><a href="/village">Village List</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Partiess">
+        <ul role="list">
+          <li><a href="/party">Party List</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="User">
+        <ul role="list">
+          {{ if .User }}
+          <li><a hx-get="/logout" hx-target="#main">Logout</a></li>
+          <li>
+            <a hx-get="/user/{{.User}}" hx-target="#main">Hello, {{.User}}!</a>
+          </li>
+          {{ else }}
+          <li><a hx-get="/login" hx-target="#main">Login</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+    </header>
+
+    <div id="main" class="main">{{ .Contents }}</div>
+  </body>
+</html>
+{{ end }}

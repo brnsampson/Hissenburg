@@ -1,0 +1,224 @@
+CREATE TABLE user (
+    user_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE village (
+    village_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE gender (
+    gender_id INTEGER PRIMARY KEY,
+    gender TEXT NOT NULL
+);
+
+CREATE TABLE name (
+    name_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    gender INTEGER NOT NULL FOREIGN KEY (gender) REFERENCES gender(gender_id)
+);
+
+CREATE TABLE surname (
+    surname_id INTEGER PRIMARY KEY,
+    surname TEXT NOT NULL
+);
+
+CREATE TABLE background (
+    background_id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    image TEXT
+);
+
+CREATE TABLE identity (
+    identity_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    surname TEXT NOT NULL,
+    gender INTEGER NOT NULL,
+    FOREIGN KEY (gender) REFERENCES gender(gender_id),
+    background INTEGER NOT NULL,
+    FOREIGN KEY (background) REFERENCES background(background_id),
+    age INTEGER NOT NULL
+);
+
+CREATE TABLE physique (
+    physique_id INTEGER PRIMARY KEY,
+    physique TEXT
+);
+
+CREATE TABLE skin (
+    skin_id INTEGER PRIMARY KEY,
+    skin TEXT
+);
+
+CREATE TABLE hair (
+    hair_id INTEGER PRIMARY KEY,
+    hair TEXT
+);
+
+CREATE TABLE face (
+    face_id INTEGER PRIMARY KEY,
+    face TEXT
+);
+
+CREATE TABLE speech (
+    speech_id INTEGER PRIMARY KEY,
+    speech TEXT
+);
+
+CREATE TABLE clothing (
+    clothing_id INTEGER PRIMARY KEY,
+    clothing TEXT
+);
+
+CREATE TABLE virtue (
+    virtue_id INTEGER PRIMARY KEY,
+    virtue TEXT
+);
+
+CREATE TABLE vice (
+    vice_id INTEGER PRIMARY KEY,
+    vice TEXT
+);
+
+CREATE TABLE reputation (
+    reputation_id INTEGER PRIMARY KEY,
+    reputation TEXT
+);
+
+CREATE TABLE misfortune (
+    misfortune_id INTEGER PRIMARY KEY,
+    misfortune TEXT
+);
+
+CREATE TABLE traits (
+    traits_id INTEGER PRIMARY KEY,
+    physique INTEGER NOT NULL,
+    FOREIGN KEY (physique) REFERENCES physique(physique_id),
+    skin INTEGER NOT NULL,
+    FOREIGN KEY (skin) REFERENCES skin(skin_id),
+    hair INTEGER NOT NULL,
+    FOREIGN KEY (hair) REFERENCES hair(hair_id),
+    face INTEGER NOT NULL,
+    FOREIGN KEY (face) REFERENCES face(face_id),
+    speech INTEGER NOT NULL,
+    FOREIGN KEY (speech) REFERENCES speech(speech_id),
+    clothing INTEGER NOT NULL,
+    FOREIGN KEY (clothing) REFERENCES clothing(clothing_id),
+    virtue INTEGER NOT NULL,
+    FOREIGN KEY (virtue) REFERENCES virtue(virtue_id),
+    vice INTEGER NOT NULL,
+    FOREIGN KEY (vice) REFERENCES vice(vice_id),
+    reputation INTEGER NOT NULL,
+    FOREIGN KEY (reputation) REFERENCES reputation(reputation_id),
+    misfortune INTEGER NOT NULL,
+    FOREIGN KEY (misfortune) REFERENCES misfortune(misfortune_id)
+);
+
+CREATE TABLE status (
+    status_id INTEGER PRIMARY KEY,
+    hp TINYINT NOT NULL,
+    max_hp TINYINT NOT NULL,
+    str TINYINT NOT NULL,
+    max_str TINYINT NOT NULL,
+    dex TINYINT NOT NULL,
+    max_dex TINYINT NOT NULL,
+    will TINYINT NOT NULL,
+    max_will TINYINT NOT NULL
+);
+
+CREATE TABLE item_kind (
+    item_kind_id INTEGER PRIMARY KEY,
+    item_kind TEXT NOT NULL
+);
+
+CREATE TABLE item_slot (
+    item_slot_id INTEGER PRIMARY KEY,
+    item_slot TEXT NOT NULL
+);
+
+CREATE TABLE item (
+    item_id   INTEGER PRIMARY KEY,
+    kind INTEGER NOT NULL,
+    FOREIGN KEY (kind) REFERENCES item_kind(item_kind_id),
+    name TEXT    NOT NULL,
+    description  TEXT,
+    value INTEGER NOT NULL,
+    dice_count TINYINT,
+    dice_sides TINYINT,
+    armor TINYINT NOT NULL,
+    storage TINYINT NOT NULL,
+    size TINYINT NOT NULL,
+    active_size TINYINT NOT NULL,
+    slot INTEGER NOT NULL,
+    FOREIGN KEY (slot) REFERENCES item_slot(item_slot_id),
+    stackable BOOL NOT NULL,
+    icon TEXT
+);
+
+CREATE TABLE inventory (
+    inventory_id INTEGER PRIMARY KEY,
+    left_hand INTEGER,
+    FOREIGN KEY (left_hand) REFERENCES item(item_id),
+    right_hand INTEGER,
+    FOREIGN KEY (right_hand) REFERENCES item(item_id),
+    head INTEGER,
+    FOREIGN KEY (head) REFERENCES item(item_id),
+    torso INTEGER,
+    FOREIGN KEY (torso) REFERENCES item(item_id),
+    backpack_0 INTEGER,
+    FOREIGN KEY (backpack_0) REFERENCES item(item_id),
+    backpack_1 INTEGER,
+    FOREIGN KEY (backpack_1) REFERENCES item(item_id),
+    backpack_2 INTEGER,
+    FOREIGN KEY (backpack_2) REFERENCES item(item_id),
+    backpack_3 INTEGER,
+    FOREIGN KEY (backpack_3) REFERENCES item(item_id),
+    backpack_4 INTEGER,
+    FOREIGN KEY (backpack_4) REFERENCES item(item_id),
+    backpack_5 INTEGER,
+    FOREIGN KEY (backpack_5) REFERENCES item(item_id),
+    extra_space_0 INTEGER,
+    FOREIGN KEY (extra_space_0) REFERENCES item(item_id),
+    extra_space_1 INTEGER,
+    FOREIGN KEY (extra_space_1) REFERENCES item(item_id),
+    extra_space_2 INTEGER,
+    FOREIGN KEY (extra_space_2) REFERENCES item(item_id),
+    extra_space_3 INTEGER,
+    FOREIGN KEY (extra_space_3) REFERENCES item(item_id),
+    extra_space_4 INTEGER,
+    FOREIGN KEY (extra_space_4) REFERENCES item(item_id),
+    extra_space_5 INTEGER,
+    FOREIGN KEY (extra_space_5) REFERENCES item(item_id),
+    ground_0 INTEGER,
+    FOREIGN KEY (ground_0) REFERENCES item(item_id),
+    ground_1 INTEGER,
+    FOREIGN KEY (ground_1) REFERENCES item(item_id),
+    ground_2 INTEGER,
+    FOREIGN KEY (ground_2) REFERENCES item(item_id),
+    ground_3 INTEGER,
+    FOREIGN KEY (ground_3) REFERENCES item(item_id),
+    ground_4 INTEGER,
+    FOREIGN KEY (ground_4) REFERENCES item(item_id),
+    ground_5 INTEGER,
+    FOREIGN KEY (ground_5) REFERENCES item(item_id)
+);
+
+CREATE TABLE character (
+    character_id INTEGER PRIMARY KEY,
+    user INTEGER NOT NULL,
+    FOREIGN KEY (user) REFERENCES user(user_id),
+    village INTEGER NOT NULL,
+    party TEXT,
+    FOREIGN KEY (village) REFERENCES village(village_id),
+    identity INTEGER NOT NULL,
+    FOREIGN KEY (identity) REFERENCES identity(identity_id),
+    traits INTEGER NOT NULL,
+    FOREIGN KEY (traits) REFERENCES traits(traits_id),
+    status INTEGER NOT NULL,
+    FOREIGN KEY (status) REFERENCES status(status_id),
+    inventory INTEGER NOT NULL,
+    FOREIGN KEY (inventory) REFERENCES inventory(inventory_id),
+    description TEXT NOT NULL
+);

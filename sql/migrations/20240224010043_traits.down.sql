@@ -1,0 +1,10 @@
+DELETE FROM physique;
+DELETE FROM skin;
+DELETE FROM hair;
+DELETE FROM face;
+DELETE FROM speech;
+DELETE FROM clothing;
+DELETE FROM virtue;
+DELETE FROM vice;
+DELETE FROM reputation;
+DELETE FROM misfortune;

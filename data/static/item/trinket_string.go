@@ -30,9 +30,9 @@ func _() {
 	_ = x[Whistle-19]
 }
 
-const _Trinket_name = "BottleCardDeckDiceSetFace PaintFake JewelsHornIncenseInstrumentLensMarblesMirrorPerfumeQuill &  InkSalt PackSmall BellSoapSpongeTar PotTwineWhistle"
+const _Trinket_name = "BottleCardDeckDiceSetFace PaintFake JewelsHornIncenseInstrumentLensMarblesMirrorPerfumeQuill and InkSalt PackSmall BellSoapSpongeTar PotTwineWhistle"
 
-var _Trinket_index = [...]uint8{0, 6, 14, 21, 31, 42, 46, 53, 63, 67, 74, 80, 87, 99, 108, 118, 122, 128, 135, 140, 147}
+var _Trinket_index = [...]uint8{0, 6, 14, 21, 31, 42, 46, 53, 63, 67, 74, 80, 87, 100, 109, 119, 123, 129, 136, 141, 148}
 
 func (i Trinket) String() string {
 	if i < 0 || i >= Trinket(len(_Trinket_index)-1) {

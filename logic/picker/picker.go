@@ -18,12 +18,18 @@ type Countable interface {
 
 // PickRandom will pick a random value for some type that based on an int and takes the values (0, Count()). If there are
 // no special rules or logic that go into picking a particular value.
-func PickRandom[T Countable]() T {
-	var tmp T
-	c := tmp.Count()
+func PickRandom[T any](from []T) T {
+	c := len(from)
 	picked := rand.Intn(c)
-	return T(picked)
+	return from[picked]
 }
+
+//func PickRandom[T Countable]() T {
+//	var tmp T
+//	c := tmp.Count()
+//	picked := rand.Intn(c)
+//	return T(picked)
+//}
 
 func RandomGender() gender.Gender {
 	// Exclude gender.Undefined... That is more meant to indicate no selection has been made

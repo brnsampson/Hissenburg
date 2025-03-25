@@ -1,0 +1,10 @@
+DROP TABLE physique;
+DROP TABLE skin;
+DROP TABLE hair;
+DROP TABLE face;
+DROP TABLE speech;
+DROP TABLE clothing;
+DROP TABLE virtue;
+DROP TABLE vice;
+DROP TABLE reputation;
+DROP TABLE misfortune;

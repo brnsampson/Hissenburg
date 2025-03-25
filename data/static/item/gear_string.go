@@ -30,9 +30,9 @@ func _() {
 	_ = x[Wolfsbane-19]
 }
 
-const _Gear_name = "Air BladderAntitoxinCartChain (10ft)Dowsing RodFire OilGrappling HookLarge SackLarge TrapLockpicksManaclesPickPole (10ft)PullyRepellentRope (25ft)Spirit WardSpyglassTinderboxWolfsbane"
+const _Gear_name = "Air BladderAntitoxinCartChainDowsing RodFire OilGrappling HookLarge SackLarge TrapLockpicksManaclesPickPolePullyRepellentRopeSpirit WardSpyglassTinderboxWolfsbane"
 
-var _Gear_index = [...]uint8{0, 11, 20, 24, 36, 47, 55, 69, 79, 89, 98, 106, 110, 121, 126, 135, 146, 157, 165, 174, 183}
+var _Gear_index = [...]uint8{0, 11, 20, 24, 29, 40, 48, 62, 72, 82, 91, 99, 103, 107, 112, 121, 125, 136, 144, 153, 162}
 
 func (i Gear) String() string {
 	if i < 0 || i >= Gear(len(_Gear_index)-1) {

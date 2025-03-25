@@ -1,0 +1,10 @@
+{{ define "login" }}
+<div id="login">
+    <form hx-post="/login" hx-target="#login" hx-swap="outerHTML">
+        <label>User Name<input name="username"></input></label>
+        <button>Login</button>
+        <button hx-post="/user">Create New User</button>
+    </form>
+    <a href="/logout" hx-boost="true">Logout</button>
+</div>
+{{ end }}

@@ -23,7 +23,7 @@ const (
 	Marbles
 	Mirror
 	Perfume
-	QuillAndInk // Quill &  Ink
+	QuillAndInk // Quill and Ink
 	SaltPack // Salt Pack
 	SmallBell // Small Bell
 	Soap
@@ -84,7 +84,7 @@ func newTrinket(trinket Trinket, description string, value int, stacks bool, ico
 		Storage: 0,
 		Size: 1,
 		ActiveSize: 1,
-		ActiveSlot: item.HandSlot,
+		ActiveSlot: item.Hand,
 		Stackable: stacks,
 		Icon: icon,
 	}
@@ -107,7 +107,7 @@ var TrinketList map[Trinket]item.Item = map[Trinket]item.Item{
 	),
 	DiceSet: newTrinket(
 		DiceSet,
-		"At least, like, three or four dice",
+		"At least, like, three or four dice.",
 		0,
 		true,
 		o.None[string](),
@@ -121,14 +121,14 @@ var TrinketList map[Trinket]item.Item = map[Trinket]item.Item{
 	),
 	FakeJewels: newTrinket(
 		FakeJewels,
-		"Pretty, but worthless. Just like you, honey",
+		"Pretty, but worthless. Just like you, honey.",
 		0,
 		true,
 		o.None[string](),
 	),
 	Horn: newTrinket(
 		Horn,
-		"Bugle, trumpet, or french, it doesn't matter. Blow it like you love it",
+		"Bugle, trumpet, or french, it doesn't matter. Blow it like you love it.",
 		0,
 		false,
 		o.None[string](),
@@ -142,14 +142,14 @@ var TrinketList map[Trinket]item.Item = map[Trinket]item.Item{
 	),
 	Instrument: newTrinket(
 		Instrument,
-		"Just don't be that guy at a party that pulls out an acoustic guitar",
+		"Just don't be that guy at a party that pulls out an acoustic guitar.",
 		0,
 		false,
 		o.None[string](),
 	),
 	Lens: newTrinket(
 		Lens,
-		"Concave or convex, or whatever you need at the moment! Lenses are magic, just like magnets",
+		"Concave or convex, or whatever you need at the moment! Lenses are magic, just like magnets.",
 		0,
 		false,
 		o.None[string](),
@@ -170,35 +170,35 @@ var TrinketList map[Trinket]item.Item = map[Trinket]item.Item{
 	),
 	Perfume: newTrinket(
 		Perfume,
-		"PSA: perfume and cologne are not replacements for showers",
+		"PSA: perfume and cologne are not replacements for showers.",
 		0,
 		false,
 		o.None[string](),
 	),
 	QuillAndInk: newTrinket(
 		QuillAndInk,
-		"Note from your GM: please take notes",
+		"Note from your GM: please take notes.",
 		0,
 		false,
 		o.None[string](),
 	),
 	SaltPack: newTrinket(
 		SaltPack,
-		"Also known as a flavor pack",
+		"Also known as a flavor pack.",
 		0,
 		true,
 		o.None[string](),
 	),
 	SmallBell: newTrinket(
 		SmallBell,
-		"Ideal for tying around the neck of a small, cute animal",
+		"Ideal for tying around the neck of a small, cute animal.",
 		0,
 		false,
 		o.None[string](),
 	),
 	Soap: newTrinket(
 		Soap,
-		"Here you go, you filthy animals",
+		"Here you go, you filthy animals.",
 		0,
 		true,
 		o.None[string](),
@@ -212,7 +212,7 @@ var TrinketList map[Trinket]item.Item = map[Trinket]item.Item{
 	),
 	TarPot: newTrinket(
 		TarPot,
-		"Please don't make a mess",
+		"Please don't make a mess.",
 		0,
 		false,
 		o.None[string](),
@@ -226,7 +226,7 @@ var TrinketList map[Trinket]item.Item = map[Trinket]item.Item{
 	),
 	Whistle: newTrinket(
 		Whistle,
-		"I would ask you to blow the whistle, but you might be too short",
+		"I would ask you to blow the whistle, but you might be too short.",
 		0,
 		false,
 		o.None[string](),

@@ -1,0 +1,76 @@
+{{ define "item_browser" }}
+<div id="item_browser" class="container">
+    <div class="f-row">
+        <table id="item_kind_table">
+            <caption>
+                Item Kinds
+            </caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range $i, $kind := .Kinds }}
+                <tr>
+                    <td>{{$kind.ID}}</td>
+                    <td>{{$kind.Name}}</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+        <table id="item_slot_table">
+            <caption>
+                Item Slots
+            </caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range $i, $slot := .Slots }}
+                <tr>
+                    <td>{{$slot.ID}}</td>
+                    <td>{{$slot.Name}}</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+    <br></br>
+    <br></br>
+    <br></br>
+    {{ template "item_list" .Items }}
+</div>
+{{ end }}
+
+{{ define "item_list" }}
+<div id="item_list" class="container">
+    <a href="/item/new" hx-boost="true">Create a new item!</a>
+    <table id="item_table">
+        <caption>
+            Items
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Kind</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $i, $item := . }}
+            <tr>
+                <td>{{$item.Name}}</td>
+                <td>{{$item.Kind}}</td>
+                <td>{{$item.Description}}</td>
+                <td><a href="/item/{{ $item.Kind }}/{{ $item.Name }}" hx-boost="true">Details</button></td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</div>
+{{ end }}

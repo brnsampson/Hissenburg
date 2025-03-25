@@ -41,6 +41,26 @@
         }
       }
     },
+    "go-migrate@latest": {
+      "last_modified": "2024-02-10T18:15:24Z",
+      "resolved": "github:NixOS/nixpkgs/10b813040df67c4039086db0f6eaf65c536886c6#go-migrate",
+      "source": "devbox-search",
+      "version": "4.17.0",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/yydl6phw0fgy5gbwg1mq7zxd4pqa54g8-go-migrate-4.17.0"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/8r2mg0zk1ypj8lcihw5fad5bfm4f5yyz-go-migrate-4.17.0"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/jgqz91kqbaqj11i36yi13ciq430a0329-go-migrate-4.17.0"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/lplzm6vwjs3d7lm0lq1gi2nq67da0125-go-migrate-4.17.0"
+        }
+      }
+    },
     "go_1_22@latest": {
       "last_modified": "2024-02-08T11:55:47Z",
       "resolved": "github:NixOS/nixpkgs/c0b7a892fb042ede583bdaecbbdc804acb85eabe#go_1_22",
@@ -78,6 +98,66 @@
         },
         "x86_64-linux": {
           "store_path": "/nix/store/s388xvv6zdhf5df236jgm28rb3srx1lb-gotools-0.16.1"
+        }
+      }
+    },
+    "sqlc@latest": {
+      "last_modified": "2024-01-27T14:55:31Z",
+      "resolved": "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb#sqlc",
+      "source": "devbox-search",
+      "version": "1.25.0",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/yzmnh65kdn8p1ijb1cc5kybqwk96187m-sqlc-1.25.0"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/nlh8vwbkxd72ys2jjfs709zn8ka4rxgx-sqlc-1.25.0"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/gwzm57hnwh79v2d820shs6zk9g88idf4-sqlc-1.25.0"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/01zb3sykpkrygz92ccbjw2b5i5y3nkjx-sqlc-1.25.0"
+        }
+      }
+    },
+    "sqlite-utils@latest": {
+      "last_modified": "2024-01-27T14:55:31Z",
+      "resolved": "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb#sqlite-utils",
+      "source": "devbox-search",
+      "version": "3.36",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/swwnrmbn2sclc2g0bgyrfgq60rykybm0-python3.11-sqlite-utils-3.36"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/awy9gpkgcbhnhwak70n4mj3rgbvwr02r-python3.11-sqlite-utils-3.36"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/an4pffh4pn83lh4q2pigp52hf4gqrx52-python3.11-sqlite-utils-3.36"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/4944aj4w9zidas6chnzsp8p6gz3llk33-python3.11-sqlite-utils-3.36"
+        }
+      }
+    },
+    "sqlite@latest": {
+      "last_modified": "2024-02-05T22:10:55Z",
+      "resolved": "github:NixOS/nixpkgs/4b1aab22192b787355733c9495d47f4c66af084c#sqlite",
+      "source": "devbox-search",
+      "version": "3.44.2",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/z759p3dx45p03nlk12hcssq1iwl1vm3j-sqlite-3.44.2-bin"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/5rvwbc0nbkdzk94skq9c9xzmn1fr65z4-sqlite-3.44.2-bin"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/qamiilzzl1l561js2p6qpayk3241n2mq-sqlite-3.44.2-bin"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/za82xraz7bqqb6drw3f38w1g3yq0ri31-sqlite-3.44.2-bin"
         }
       }
     }

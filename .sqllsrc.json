@@ -1,0 +1,6 @@
+{
+  "name": "Hissenburg",
+  "adapter": "sqlite3",
+  "filename": "./db/hiss.sqlite3",
+  "projectPaths": ["./"]
+}

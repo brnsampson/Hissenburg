@@ -1,0 +1,48 @@
+{{ define "character_browser" }}
+<div id="character_list" class="container">
+    <table id="character_table">
+        <caption>
+            Characters
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>HP</th>
+                <th>Str</th>
+                <th>Dex</th>
+                <th>Will</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $i, $char := .Characters }}
+            <tr>
+                <td>{{$char.Identity.Name}}</td>
+                <td>{{$char.Identity.Surname}}</td>
+                <td>{{$char.Status.Hp}} / {{$char.Status.MaxHp}}</td>
+                <td>{{$char.Status.Str}} / {{$char.Status.MaxStr}}</td>
+                <td>{{$char.Status.Dex}} / {{$char.Status.MaxDex}}</td>
+                <td>{{$char.Status.Will}} / {{$char.Status.MaxWill}}</td>
+                <td><a href="{{ printf "/character/%s/%s" $char.Identity.Name $char.Identity.Surname }}" hx-boost="true">Character Sheet</a></td>
+            </tr>
+            {{ else }}
+            <tr>
+                <td colspan="9">No characters to display!</td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+    <br></br>
+    <form method="POST" action="/character/new" hx-boost="true">
+        <label>Village<input name="village" value="Hissenburg"></input></label>
+        <label>Party<input name="party" value="Los Tigres"></input></label>
+        <button hx-post="/character/generate">Generate random new character!</button>
+        <br>
+        <strong>OR</strong>
+        <br>
+        <label>Name<input name="name"></input></label>
+        <label>Surname<input name="surname"></input></label>
+        <button>Start a new character from a name!</button>
+    </form>
+</div>
+{{ end }}

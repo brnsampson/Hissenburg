@@ -1,0 +1,41 @@
+{{ define "village_browser" }}
+<div id="village_browser" class="container">
+    <button hx-get="/village/new" hx-target="#main">Create a new village!</button>
+    <br></br>
+    {{ template "village_list" . }}
+</div>
+{{ end }}
+
+{{ define "village_list" }}
+<div id="village_list" class="container">
+    <table id="village_table">
+        <caption>
+            Villages
+        </caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ range $i, $village := . }}
+            <tr>
+                <td>{{$village.Name}}</td>
+                <td><button hx-get="/village/{{ $village.Name }}" hx-target="#main">Go to here</button></td>
+            </tr>
+            {{ end }}
+        </tbody>
+    </table>
+</div>
+{{ end }}
+
+{{ define "village_new" }}
+<form id="new_village_form" hx-post="/village" hx-boost="true">
+    <label>Village Name<input name="name"></input></label>
+    <button>Make it!</button>
+</form>
+{{ end }}
+
+{{ define "village_view" }}
+Welcome to {{ .Name }}!
+{{ end }}

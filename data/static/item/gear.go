@@ -13,8 +13,8 @@ type Gear int
 const (
 	AirBladder Gear = iota // Air Bladder
 	Antitoxin
-	Cart // Cart
-	Chain // Chain (10ft)
+	Cart
+	Chain
 	DowsingRod // Dowsing Rod
 	FireOil // Fire Oil
 	GrapplingHook // Grappling Hook
@@ -23,10 +23,10 @@ const (
 	Lockpicks
 	Manacles
 	Pick
-	Pole // Pole (10ft)
+	Pole
 	Pully
 	Repellent
-	Rope // Rope (25ft)
+	Rope
 	SpiritWard // Spirit Ward
 	Spyglass
 	Tinderbox
@@ -84,7 +84,7 @@ func newGear(gear Gear, description string, value, storage, size int, stacks boo
 		Storage: storage,
 		Size: size,
 		ActiveSize: size,
-		ActiveSlot: item.HandSlot,
+		ActiveSlot: item.Hand,
 		Stackable: stacks,
 		Icon: icon,
 	}
@@ -120,7 +120,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	Chain: newGear(
 		Chain,
-		"A 10ft metal chain",
+		"A 10ft metal chain.",
 		10,
 		0,
 		1,
@@ -129,7 +129,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	DowsingRod: newGear(
 		DowsingRod,
-		"A rod used to dowse, which is when an idiot looks for buried water by holding a stick",
+		"A rod used to dowse, which is when an idiot looks for buried water by holding a stick.",
 		0,
 		0,
 		1,
@@ -138,7 +138,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	FireOil: newGear( // Fire Oil
 		FireOil,
-		"Oil that burns real good",
+		"Oil that burns real good.",
 		10,
 		0,
 		1,
@@ -147,7 +147,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	GrapplingHook: newGear( // Grappling Hook
 		GrapplingHook,
-		"A rope with a hook tied to one end. If you toss it over something it'll get stuck and you can climb! At least, that's how it works in the movies",
+		"A rope with a hook tied to one end. If you toss it over something it'll get stuck and you can climb! At least, that's how it works in the movies.",
 		25,
 		0,
 		1,
@@ -165,7 +165,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	LargeTrap: newGear(
 		LargeTrap,
-		"Curious is the trap-maker's art. Never there to see the efficacy of their own design",
+		"Curious is the trap-maker's art. Never there to see the efficacy of their own design.",
 		20,
 		0,
 		1,
@@ -219,7 +219,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	Repellent: newGear(
 		Repellent,
-		"I dunno, if you ask me you're already repellent enough! OOOOOOH, SICK BURN BRO",
+		"I dunno, if you ask me you're already repellent enough! OOOOOOH, SICK BURN BRO.",
 		0,
 		0,
 		1,
@@ -228,7 +228,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	Rope: newGear( // Rope (25ft)
 		Rope,
-		"25ft rope. Do all the other objects that need rope come with it? Unclear",
+		"25ft rope. Do all the other objects that need rope come with it? Unclear.",
 		5,
 		0,
 		1,
@@ -237,7 +237,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	SpiritWard: newGear(
 		SpiritWard,
-		"I don't ALWAYS have something witty to write here. Or know what the thing is supposed to be really",
+		"I don't ALWAYS have something witty to write here. Or know what the thing is supposed to be really.",
 		0,
 		0,
 		1,
@@ -246,7 +246,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	Spyglass: newGear(
 		Spyglass,
-		"An old-timey way to say telescope",
+		"An old-timey way to say telescope.",
 		40,
 		0,
 		1,
@@ -255,7 +255,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	Tinderbox: newGear(
 		Tinderbox,
-		"A small kit you can use to start fires, you little pyro",
+		"A small kit you can use to start fires, you little pyro.",
 		5,
 		0,
 		1,
@@ -264,7 +264,7 @@ var GearList map[Gear]item.Item = map[Gear]item.Item{
 	),
 	Wolfsbane: newGear(
 		Wolfsbane,
-		"Another situation where I am left wondering what this really is",
+		"Another situation where I am left wondering what this really is.",
 		10,
 		0,
 		1,
